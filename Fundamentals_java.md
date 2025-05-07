@@ -1,4 +1,4 @@
-
+# 🧪Methods & Functions
 
 Difference between method and function :
 1. method
@@ -457,4 +457,20 @@ for(int i = 0 ; i<n ; i++){
 
 2.**Exit Control Loops
 --------------------------
+
+🧪 Sample: Do-While Loop in Java
+```
+public class DoWhileExample {
+    public static void main(String[] args) {
+        int counter = 1;
+
+        do {
+            System.out.println("Count is: " + counter);
+            counter++;
+        } while (counter <= 5);
+    }
+}
+
+```
+
 
