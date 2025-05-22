@@ -1,0 +1,88 @@
+# Sliding Window
+
+
+***==Example 1:== Longest Substring without repeating characters***
+
+Steps:
+1. Initialize l and r pointer at 0th index .
+2. create a Set . 
+3. Check r characters in the Set , if we don't have then push the r character into the set and increment r .
+4. If we have r character in the Set , remove l character and move l by one .
+5. Count the length by `r-l+1` and all time update max value .
+
+
+```
+import java.util.HashSet;
+
+class Solution {
+
+    public int lengthOfLongestSubstring(String s) {
+        HashSet<Character> h = new HashSet<>();
+        int cnt = 0;
+        int max_cnt = 0;
+        int l = 0 ;
+        int r = 0;
+
+        while(r<s.length()){
+            if(r<s.length() && !h.contains(s.charAt(r)) ){
+                h.add(s.charAt(r));
+                r++;
+                cnt=r-l;
+            }
+
+            max_cnt = Math.max(max_cnt , cnt);
+
+            if(r<s.length() && h.contains(s.charAt(r))){
+                h.remove(s.charAt(l));
+                l++;
+                cnt--;
+                max_cnt = Math.max(max_cnt , cnt);
+            }
+        }
+
+        return max_cnt ;
+    }
+}
+```
+
+
+***==Example 2== : Max Consecutive One (LC : 1004)***
+
+```
+class Solution {
+
+    public int longestOnes(int[] nums, int k) {
+
+        int l=0;
+        int r=0;
+        int max_cnt =0;
+        int cnt = 0;
+        int temp = 0;
+
+        while (r < nums.length) {
+        
+            if (nums[r] == 0) {
+                temp++;
+                cnt++;
+            }
+
+            while (temp > k) {
+                if (nums[l] == 0) {
+                    temp--;
+                }
+                l++;
+                cnt--;
+            }
+
+            if(nums[r]==1){
+                cnt++;
+            }            
+
+            max_cnt = Math.max(cnt, max_cnt);
+            r++;
+        }
+        return max_cnt;
+    }
+}
+```
+
