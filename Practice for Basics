@@ -1,0 +1,168 @@
+### Example 1: Majority Element ###
+
+***Steps:***
+1. From the given array, assume that starting index of the array , is my majority element.
+2. From that start element compare rest of the elements , if you got same value -> increase the counter . If you got different value -> decrease the counter .
+3. Counter becomes zero , it means , till now we haven't seen majority element . Again , select the new target element . the very next element would be your target element .
+4. At the end of for loop if counter is more than zero , it means that there is a possibility of a majority element . 
+5. Taking that target value, count how many times that element was repeated in the array . if counter is greater than n/2 than that's my majority element .
+
+```
+class Solution {
+    public int majorityElement(int[] nums) {
+        int target=nums[0];
+        int cnt = 1;
+
+        for(int i = 1; i<nums.length ; i++){
+        
+            if(cnt==0){
+                target=nums[i];
+            }
+
+            if(nums[i]==target){
+                 cnt++;
+            } else{
+                cnt--;
+            }
+        }
+
+        int temp=0;
+        if(cnt>0){
+        
+            for(int i=0 ; i<nums.length ; i++){
+
+                if(nums[i]==target){
+                    temp++;
+                }
+            }
+            if(temp>(nums.length/2)) return target;
+        }
+
+        return 0;
+    }
+}
+```
+
+
+
+
+### Example 2: Longest Consecutive Sequence ###
+
+***Steps:***
+1. Create a set 
+2. Run a loop , take the values from array and push it into the set using `insert()` method.
+3. Start iterating the set values , we have to find whether the element is the start element or not , by decreasing the value , and by checking if that value is there in the set or not.
+4. If we got that start value , then start comparing , by incrementing and checking for that value and incrementing the count value .
+```
+class Solution {
+
+    public int longestConsecutive(int[] nums) {
+
+        int max_cnt = 0;
+
+  
+
+        HashSet<Integer> h = new HashSet<>();
+
+        //inserting array elements into the set
+
+        for(int i = 0 ; i<nums.length ; i++){
+
+            h.add(nums[i]);
+
+        }
+
+  
+
+        if(h.isEmpty()){
+
+            return 0;
+
+        }
+
+  
+
+        for(int val : h){
+
+            if(!h.contains(val-1)){
+
+                int start = val;
+
+                int cnt = 1;
+
+                while(h.contains(start+cnt)){
+
+                    cnt++;
+
+                }
+
+                max_cnt=Math.max(cnt,max_cnt);
+
+  
+
+            }
+
+  
+
+        }
+
+  
+
+        return max_cnt;
+
+    }
+
+}
+```
+**Practice**
+LC: 239 & 209
+
+
+
+---
+
+
+### 🧠`SubArray , SubSet , SubSequence , SubString ` 
+
+| Term            | Type         | Must Be Contiguous? | Must Keep Order? | Example (`[1, 2, 3]`) |
+| --------------- | ------------ | ------------------- | ---------------- | --------------------- |
+| **Subarray**    | Array        | ✅ Yes               | ✅ Yes            | `[1,2]`, `[2,3]`      |
+| **Subset**      | Set/Array    | ❌ No                | ❌ No             | `[1,3]`, `[2]`        |
+| **Subsequence** | Array/String | ❌ No                | ✅ Yes            | `[1,3]`, `[1,2,3]`    |
+| **Substring**   | String       | ✅ Yes               | ✅ Yes            | `"lo"` in `"hello"`   |
+
+## 📦 Subarray
+
+- 🔗 **Contiguous chunk** of an array.
+    
+- 🍱 Keeps the order.
+    
+- 🎯 Total of `n*(n+1)/2` possible subarrays.
+
+
+## 🌈 Subset
+
+- 🧮 Any **combination** of elements (contiguous or not).
+    
+- ❌ Order doesn’t matter.
+    
+- 💡 Total = `2^n` subsets including empty set.
+
+
+## 🧵 Subsequence
+
+- 🌊 A sequence that **maintains order** but **can skip elements**.
+    
+- 🧠 Think: pick & choose, but left to right only.
+    
+- Also `2^n` possibilities (excluding or including each item).
+
+
+## 🧬 Substring
+
+- 🧣 A **contiguous chunk of a string**.
+    
+- 📏 Order is preserved, characters are adjacent.
+    
+- Total substrings: `n*(n+1)/2`.
+
