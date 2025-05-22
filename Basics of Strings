@@ -1,0 +1,92 @@
+# Strings
+
+Strings are classes . Arrays are objects .
+Sequence of characters is called Strings .
+Strings are immutable . 
+All the array objects will be created in heap memory , but strings are created inside heap memory in string poll .
+Once a string got created , it will be created permanently or fixed . It means, we can't modify the string . 
+
+```
+public class Day10 {
+
+    public static void main(String[] args) {
+        //here the string "Hello" is stored in the string pool and a & b poiint to same location...
+
+        String a = "Hello";
+        String b = "Hello";
+
+        System.out.println(a==b);
+
+  
+        //here we created different objects...
+
+        String c = new String("Hello");
+        String d = new String("Hello");
+
+
+        System.out.println(c==d);
+    }
+}
+
+//OUTPUT
+true
+false
+```
+
+`==` is used to compare address .
+equals() is used to compare the data .
+
+in strings , `str.length()` is a method.
+while , in array , `arr.length` is a field .
+
+We can't reverse a String directly , coz it's immutable . Thus , we need to convert the String into character Array and then reverse .
+
+```
+public class Day10 {
+    static char[] reverse(char[] arr){
+        int i = 0;
+        int j = arr.length -1 ;
+
+        while(i<j){
+            //swap
+            char temp = arr[i];
+            arr[i] = arr[j] ;
+            arr[j] = temp;
+
+            i++;
+            j--;
+
+        }
+        return arr;
+    }
+
+
+public static void main(String[] args) {
+		String str = "Hello";
+	        char[] arr = str.toCharArray();
+	
+	        String res = new String(reverse(arr));
+	        System.out.println(res);
+	
+	    }
+	}
+
+OUTPUT:
+olleH
+```
+
+
+***==Example== : Subset of Array
+
+For a given array, we've to print possible arrays, it should be in a sequence , but not continuous, is called subset .
+
+In an array , If we've n number of elements , we'll get $$ 2^n $$
+ex : `array = [1,2,3]`
+
+# 🎭Backtracking
+
+Example of recursion,
+In recursion , we've only two possibilities either if or else .
+In backtracking , we've multiple possibilities , we've to check all the possibilities.
+Most of the problems , whenever we reach base case , we've to print all the base case elements .
+Remove last element in every recursive call , then the backtracking will be completes , otherwise it's just a recursion.
