@@ -1,0 +1,35 @@
+# Dutch National Flag
+
+==Example==: sort the array , containing only 0's , 1's & 2's 
+
+1. Initialize three pointers : l->0th index , m->0th index , h-> `(n-1)th` index
+2. The elements between m and h are unsorted so we need to traverse between m and h.
+3. if `arr[m] == 0 ` --> swap m and l , increment m and l by one position . 
+4. if `arr[m] == 1` --> keep it there and increment m by one position .
+5. if `arr[m] == 2` --> swap m and h , and decrement h by one . 
+
+
+### 🕒 Time & Space Complexity
+
+- **Time**: `O(n)` – one pass.
+    
+- **Space**: `O(1)` – in-place sorting.
+
+
+# Collections Frameworks
+
+| List        | Set           | Map           |
+| ----------- | ------------- | ------------- |
+| *ArrayList* | *HashSet*     | *HashMap*     |
+| LinkedList  | LinkedHashSet | LinkedHashMap |
+| Vector      | TreeSet       | TreeMap       |
+
+List , Set and Map , these are interfaces .
+Rest of the terms are all classes .
+Interface contains , incomplete methods , Class contains complete methods .
+
+List is ordered , which can allow duplicates .
+Set is unordered , it doesn't accept duplicates .
+Maps Contains , key-value pairs.
+
+
