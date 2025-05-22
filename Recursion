@@ -1,0 +1,214 @@
+# 🧪Recursion
+Function calls itself and itself till it meets it's base condition.
+
+There are two types in recursion :
+1. Function calling same function (itself and itself)
+2. Function calling another function (itself and itself)
+
+--> If we didn't mention base condition properly , we'll get an exception or stack-overflow.
+--> Recursions are used to break the code.
+
+Factorial using recursion:
+```
+public static int fact(n){
+	if(n==0){
+		return 1;
+	}
+	else{
+		return n * fact(n-1);
+	}
+}
+
+//fact(5) = 5*fact(4)
+// 5,4,3,2,1 will be pushed to a stack
+```
+
+for every recursive call , elements will be pushed into a stack, after reaching base condition , elements will be popped.
+
+#### Pass by Value & Pass by Reference
+In Java, we don't have pointers , so we can't use references , so java is pass by value.
+
+ex: reverse an array using two pointers
+
+---
+
+# Strings using Recursion in Java
+
+--> Strings are collection of characters.
+-->Strings are immutable.
+-->reference is stored in stack memory & String value is stored in Heap memory.
+--> if we want to perform string operations , we need to make a new object.
+--> the un-pointed data in the heap memory , is collected by the garbage collector automatically.
+--> `str.charAt(i)` to fetch the data in string using index values.
+
+### 🔥 Common String Methods in Java
+
+| Method                            | What It Does                         | Example                                  |
+| --------------------------------- | ------------------------------------ | ---------------------------------------- |
+| `length()`                        | Number of characters                 | `"apple".length()` → `5`                 |
+| `charAt(i)`                       | Gets the character at index `i`      | `"apple".charAt(1)` → `'p'`              |
+| `substring(start, end)`           | Returns a portion of the string      | `"banana".substring(1, 4)` → `"ana"`     |
+| `equals(str)`                     | Compares strings (case-sensitive)    | `"abc".equals("ABC")` → `false`          |
+| `equalsIgnoreCase(str)`           | Compares ignoring case               | `"abc".equalsIgnoreCase("ABC")` → `true` |
+| `contains(str)`                   | Checks if it contains another string | `"hello".contains("ell")` → `true`       |
+| `indexOf(char)`                   | First index of a char or string      | `"giraffe".indexOf('a')` → `3`           |
+| `toLowerCase()` / `toUpperCase()` | Change case                          | `"YoLo".toLowerCase()` → `"yolo"`        |
+| `trim()`                          | Removes spaces from both ends        | `" wow ".trim()` → `"wow"`               |
+| `replace(old, new)`               | Replace characters                   | `"java".replace('a', 'o')` → `"jovo"`    |
+| `split(" ")`                      | Splits the string into array         | `"a b c".split(" ")` → `["a", "b", "c"]` |
+
+***==Example 1==: From a given string , we have to remove a character and return the remaining string using recursions .***
+Assume that we are starting with two strings , input string & output string . At initial , output string is empty . We've few steps , those are:
+1. take the first character from the string & store in a character variable.
+2. check the variable , with our target character .
+3. if it matches , just return output string , else append the character to the output string.
+4. Slice the string , by one character . 
+
+
+```
+Input str --> Output str
+	"Hello" --> ""
+	"ello" --> "H"
+	"llo" --> "H"
+	"lo" --> "Hl"
+	"o" --> "Hllo"
+```
+
+--> Whenever , Input input string becomes empty , we have to stop the recursion.
+
+Code:
+
+```
+public class Day9 {
+    static String skip(String ip) {
+    
+        if(ip.isEmpty()){
+            return "";
+        }
+
+        char ch = ip.charAt(0);
+
+        if (ch =='e'){
+            return skip(ip.substring(1));
+        }else{
+            return ch + skip(ip.substring(1));
+        }
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(skip("Hello"));
+
+    }
+}
+```
+
+
+==Example 2== : From a given string , skip a word &  print rest of the characters.
+
+```
+public class Day9 {
+
+    static String skip(String ip) {
+
+
+        if(ip.isEmpty()){
+            return "";
+        }
+
+        char ch = ip.charAt(0);
+
+        if (ip.startsWith("Hello")){
+            return skip(ip.substring(5));
+        }
+
+        else{
+            return ch+ skip(ip.substring(1));
+        }
+
+    }
+
+  
+    public static void main(String[] args) {
+
+        System.out.println(skip("abcdefHellozxcv"));
+
+    }
+}
+```
+
+==Example 3==: From the given string , you have to skip , 'He' not 'Hello' 
+
+```
+public class Day9 {
+
+    static String skip(String ip) {
+
+        if(ip.isEmpty()){
+            return "";
+        }
+
+        char ch = ip.charAt(0);
+
+        if (!(ip.startsWith("Hello")) && ip.startsWith("He")){
+            return skip(ip.substring(2));
+        }
+
+        else{
+            return ch+ skip(ip.substring(1));
+        }
+
+    }
+
+  
+
+    public static void main(String[] args) {
+
+        System.out.println(skip("abcdefHellozxHecv"));
+
+    }
+}
+```
+
+
+
+# Two Pointer Approach
+
+Steps:
+1. Initialize the pointers , according to the question.
+2. If you're starting first pointer at 0th index & second pointer at last index , whenever , both pointers crosses each other , break the loop .  In between , do the relevant operations . 
+
+==Example 4== : Reverse an Array
+
+Steps:
+1. Start first pointer i at first index, second pointer j at last index .
+2. Increase i and decrease j , till they cross each other i.e., while(i<=j) 
+3. if i>j , stop the recursion .
+
+```
+static int[] reverse(int[] arr){
+        int i = 0 ;
+        int j = 4 ;
+
+        while(i<=j){
+	     //Swapping
+            int temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+
+            i++;
+            j--;
+
+        }
+
+        return arr;
+
+    }
+
+public static void main(String[] args) {
+        int[] arr={1,2,3,4,5};
+        System.out.println(Arrays.toString(reverse(arr)));
+    }
+
+```
+
