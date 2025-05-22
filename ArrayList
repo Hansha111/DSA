@@ -1,0 +1,126 @@
+# 🚀ArrayList
+
+`ArrayList` is a **resizable array** in Java. Unlike regular arrays, it **grows and shrinks** automatically. It's part of the **`java.util`** package and is one of the most used classes in real-world apps.
+
+### 💥 Why Use `ArrayList`?
+
+|Feature|Description|
+|---|---|
+|🪄 Dynamic Size|Automatically resizes as you add/remove elements|
+|⚡ Fast Access|O(1) time to access elements by index|
+|💁‍♀️ Easy to Use|Tons of built-in methods (add, remove, contains, etc.)|
+|💼 Used a Lot|Perfect for list-based problems in interviews/projects|
+
+🧪 Basic Syntax
+
+```
+List<Wraper Class> ArrayListName = new ArrayList<>();
+
+// List is an interface & interface contains incomplete methods
+// Wraper Class is not a primitive dataType , it's a class.
+// In Collections , we have to use Wraper classes only . 
+// <> are called generics
+//ArrayList is the Class and it contains complete methods . 
+// new is a keyword . 
+```
+
+
+Example:
+```
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+
+        list.add("Maya");
+        list.add("Loves");
+        list.add("Java");
+
+        System.out.println(list); // [Maya, Loves, Java]
+    }
+}
+
+```
+
+### 🎯 Common Operations:
+
+```
+list.add("Element");           // add at end
+list.add(1, "Inserted");       // add at specific index
+list.get(0);                   // get element at index
+list.set(1, "Updated");        // update value
+list.remove(2);                // remove by index
+list.contains("Java");         // check existence
+list.size();                   // size of list
+list.clear();                  // empty the list
+
+```
+
+
+### 🚫 `ArrayList` vs Array
+
+|Feature|Array|ArrayList|
+|---|---|---|
+|Size|Fixed|Dynamic|
+|Type|Can be primitive|Objects only|
+|Syntax|Less flexible|More intuitive|
+|Performance|Slightly faster|Easier to manage|
+
+--> It belongs to collections framework.
+***What is a Framework?***
+--> Framework is nothing but pre-defined methods & will guide the program .
+
+--> `ArrayList` doubles the size of the array and copy the initial n elements ,same as the original array , and keep spaces for the rest of the positions .
+and vice versa for removal of elements , the array size is halfed .
+As `ArrayList` is a class , we have to import the `ArrayList` class, now we can access all the pre-defined methods which consists in `ArrayList`.
+
+`[1,2] --> [1,2,3, ] --> [1,2,3,4, _ , _ , _ , _ ]`
+
+
+# 🛡️Sub Arrays
+
+
+A **subarray** is a continuous part of an array.
+the sassy siblings of arrays that only like to hang out in _contiguous groups_. 😎
+
+
+
+
+LC:55 -->Jump Game 2
+```
+Question:
+You are given an integer array `nums`. You are initially positioned at the array's **first index**, and each element in the array represents your maximum jump length at that position.
+
+Return `true` _if you can reach the last index, or_ `false` _otherwise_.
+
+**Example 1:**
+
+**Input:** nums = [2,3,1,1,4]
+**Output:** true
+**Explanation:** Jump 1 step from index 0 to 1, then 3 steps to the last index.
+--------------------------------------------------------------------------------------------------------------------
+
+CODE:
+class Solution {
+
+    public boolean canJump(int[] nums) {
+
+        int max_idx = 0;
+
+        for (int i = 0; i<nums.length ; i++){
+
+            if(i>max_idx) return false;
+
+            max_idx = Math.max(max_idx , nums[i]+i);
+
+        }
+
+        return true;
+
+    }
+
+}
+
+```
+
