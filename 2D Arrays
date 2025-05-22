@@ -1,0 +1,165 @@
+# 🧠 2D Array
+
+
+### 🔹 Declaring a 2D Array & Initializing with Values
+
+
+```
+int[][] matrix;
+
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+
+
+//declaration with a specific size
+int[][] grid = new int[3][4];  // 3 rows, 4 columns
+grid[0][2] = 99;  // Row 0, Column 2
+System.out.println(grid[0][2]);  // Output: 99
+
+
+
+for (int i = 0; i < grid.length; i++) {
+    for (int j = 0; j < grid[i].length; j++) {
+        System.out.print(grid[i][j] + " ");
+    }
+    System.out.println();
+}
+
+```
+
+***🔹 Bonus: Jagged Array***
+
+Java allows uneven rows too!
+
+```
+int[][] jagged = {
+    {1, 2},
+    {3, 4, 5},
+    {6}
+};
+
+```
+
+Q. ***Zig-Zag Sum***
+
+```
+int[][] arr = {
+
+            {1, 2, 3},
+
+            {4, 5, 6},
+
+            {7, 8, 9}
+
+        };
+
+        int sum=0;
+
+        for(int i =1;i<arr.length-1;i++){
+
+            for(int j = arr[i].length -2;j>0 ; j--){
+
+                sum=sum+arr[i][j];
+
+            }
+
+        }
+
+  
+
+            for(int j=0 ; j<arr[0].length ; j++){
+
+                sum=sum+arr[0][j] + arr[arr.length-1][j];
+
+            }
+
+        System.out.println(sum);
+```
+
+
+Q. ***Max Number of Consecutive 1's***
+
+```
+    int[] arr={1,0,1,0,1,1,1,0,1,1};
+        int n = arr.length;
+
+        int i = 0;
+        int max_cnt=0;
+
+  
+
+        while(i<n){
+            int cnt=0;
+            while(arr[i]==1 && i<n-1){
+                cnt++;
+                i++;
+            }
+            
+            i++;
+            
+            max_cnt =Math.max(cnt, max_cnt);
+        }
+  
+
+        System.out.println(max_cnt);
+```
+
+
+
+### 🧠 What is HashMap?
+
+A `HashMap<K, V>` stores **key-value pairs**, and uses a **hashing algorithm** to map keys to values efficiently.
+
+---
+
+### ✅ Basic Syntax
+
+```
+import java.util.HashMap;
+
+public class HashMapExample {
+    public static void main(String[] args) {
+        // Create a HashMap
+        HashMap<String, Integer> map = new HashMap<>();
+
+        // Insert data
+        map.put("Alice", 25);
+        map.put("Bob", 30);
+        map.put("Charlie", 22);
+
+        // Access data
+        System.out.println("Bob's age: " + map.get("Bob"));
+
+        // Check if key exists
+        if (map.containsKey("Alice")) {
+            System.out.println("Alice exists in the map.");
+        }
+
+        // Remove a key
+        map.remove("Charlie");
+
+        // Iterate through the map
+        for (String name : map.keySet()) {
+            System.out.println(name + " → " + map.get(name));
+        }
+    }
+}
+
+```
+
+### 📌 Quick Notes:
+
+- `put(K key, V value)` → adds a key-value pair.
+    
+- `get(K key)` → retrieves the value for a key.
+    
+- `containsKey(K key)` → checks if a key exists.
+    
+- `remove(K key)` → deletes a key-value pair.
+    
+- Keys must be **unique**, values can **repeat**.
+
